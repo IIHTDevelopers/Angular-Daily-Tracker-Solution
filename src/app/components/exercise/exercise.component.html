@@ -1,0 +1,44 @@
+<h1>Daily Fitness Tracker</h1>
+
+<div>
+    <h3>Add Exercise</h3>
+    <form (submit)="addExercise()">
+        <input type="text" name="name" placeholder="Exercise Name" [(ngModel)]="newExercise.name">
+        <input type="text" name="time" placeholder="Time (mins)" [(ngModel)]="newExercise.time">
+        <input type="number" name="caloriesBurned" placeholder="Calories Burned"
+            [(ngModel)]="newExercise.caloriesBurned">
+        <button type="submit">Add Exercise</button>
+    </form>
+</div>
+
+<div>
+    <h3>Search Exercises</h3>
+    <input type="text" placeholder="Search Exercises" [(ngModel)]="searchKeyword">
+</div>
+
+<div>
+    <h3>List of Exercises</h3>
+    <ul>
+        <li *ngFor="let exercise of filteredExercises">
+            <div>
+                <h4>{{ exercise.name }}</h4>
+                <p>Time: {{ exercise.time }} mins</p>
+                <p>Calories Burned: {{ exercise.caloriesBurned }}</p>
+                <button (click)="editExercise(exercise)">Edit</button>
+                <button (click)="deleteExercise(exercise)">Delete</button>
+            </div>
+        </li>
+    </ul>
+</div>
+
+<div *ngIf="isEditing">
+    <h3>Edit Exercise</h3>
+    <form (submit)="saveEditedExercise()">
+        <input type="text" name="name" placeholder="Exercise Name" [(ngModel)]="editedExercise.name">
+        <input type="text" name="time" placeholder="Time (mins)" [(ngModel)]="editedExercise.time">
+        <input type="number" name="caloriesBurned" placeholder="Calories Burned"
+            [(ngModel)]="editedExercise.caloriesBurned">
+        <button type="submit">Save</button>
+        <button type="button" (click)="cancelEdit()">Cancel</button>
+    </form>
+</div>
