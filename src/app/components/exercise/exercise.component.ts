@@ -19,8 +19,6 @@ export class ExerciseComponent {
   isEditing = false;
   searchKeyword = '';
 
-  constructor() { }
-
   addExercise(): void {
     this.newExercise.id = this.exercises.length + 1;
     this.exercises.push({ ...this.newExercise });
